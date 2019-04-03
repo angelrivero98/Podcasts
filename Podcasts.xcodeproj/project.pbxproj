@@ -13,6 +13,8 @@
 		BC6761462253EB3400891208 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC6761452253EB3400891208 /* Assets.xcassets */; };
 		BC6761492253EB3400891208 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6761472253EB3400891208 /* LaunchScreen.storyboard */; };
 		BC6761512253EBC700891208 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6761502253EBC700891208 /* MainTabBarController.swift */; };
+		BC6761542254393400891208 /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6761532254393400891208 /* PodcastsSearchController.swift */; };
+		BC67615722543BA800891208 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC67615622543BA800891208 /* Podcast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		BC6761482253EB3400891208 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC67614A2253EB3400891208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6761502253EBC700891208 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		BC6761532254393400891208 /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
+		BC67615622543BA800891208 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,33 @@
 		BC67613D2253EB2300891208 /* Podcasts */ = {
 			isa = PBXGroup;
 			children = (
+				BC67615522543B8100891208 /* Models */,
+				BC676152225438E400891208 /* Controllers */,
 				BC67613E2253EB2300891208 /* AppDelegate.swift */,
-				BC6761402253EB2300891208 /* ViewController.swift */,
-				BC6761502253EBC700891208 /* MainTabBarController.swift */,
 				BC6761422253EB2300891208 /* Main.storyboard */,
 				BC6761452253EB3400891208 /* Assets.xcassets */,
 				BC6761472253EB3400891208 /* LaunchScreen.storyboard */,
 				BC67614A2253EB3400891208 /* Info.plist */,
 			);
 			path = Podcasts;
+			sourceTree = "<group>";
+		};
+		BC676152225438E400891208 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC6761502253EBC700891208 /* MainTabBarController.swift */,
+				BC6761402253EB2300891208 /* ViewController.swift */,
+				BC6761532254393400891208 /* PodcastsSearchController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BC67615522543B8100891208 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC67615622543BA800891208 /* Podcast.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC6761542254393400891208 /* PodcastsSearchController.swift in Sources */,
 				BC6761412253EB2300891208 /* ViewController.swift in Sources */,
 				BC67613F2253EB2300891208 /* AppDelegate.swift in Sources */,
 				BC6761512253EBC700891208 /* MainTabBarController.swift in Sources */,
+				BC67615722543BA800891208 /* Podcast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

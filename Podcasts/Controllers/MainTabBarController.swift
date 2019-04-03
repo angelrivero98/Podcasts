@@ -20,8 +20,8 @@ class MainTabBarController: UITabBarController {
     //MARK:- Setup Functions
     private func setupViewControllers() {
         viewControllers = [
+            generateNavigationController(ofTitle: "Search", image: #imageLiteral(resourceName: "search"), rootVC: PodcastsSearchController()),
             generateNavigationController(ofTitle: "Favorites", image: #imageLiteral(resourceName: "favorites"), rootVC: ViewController()),
-            generateNavigationController(ofTitle: "Search", image: #imageLiteral(resourceName: "search"), rootVC: ViewController()),
             generateNavigationController(ofTitle: "Downloads", image: #imageLiteral(resourceName: "download"), rootVC: ViewController())
         ]
     }
