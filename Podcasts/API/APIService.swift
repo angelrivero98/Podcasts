@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import FeedKit
 
 class APIService {
     
@@ -31,6 +32,20 @@ class APIService {
                 print("Failed to decode", decodeErr)
             }
             
+        }
+    }
+    
+    func fetchEpisodes(feedUrl: String, completionHnadler: @escaping ([Episode]) -> ()) {
+        guard let url = URL(string: feedUrl.toSecureHTTPS()) else {return}
+        let parser = FeedParser(URL: url)
+        parser.parseAsync { (result) in
+            if let err = result.error {
+                print("Failed to parse feed: ", err)
+                return
+            }
+            guard let feed = result.rssFeed else { return }
+            let episodes = feed.toEpisodes()
+            completionHnadler(episodes)
         }
     }
 }
