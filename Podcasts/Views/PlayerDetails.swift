@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class PlayerDetails: UIView {
     
@@ -14,10 +15,27 @@ class PlayerDetails: UIView {
         didSet {
             episodeTitleLabel.text = episode.title
             authorLabel.text = episode.author
+            
+            playEpisode()
             guard let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
         }
     }
+    
+    let player: AVPlayer = {
+        let avPlayer = AVPlayer()
+        avPlayer.automaticallyWaitsToMinimizeStalling = false
+        return avPlayer
+    }()
+    
+    private func playEpisode(){
+        guard let url = URL(string: episode.streamUrl) else { return }
+        let playerItem = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: playerItem)
+        player.play()
+    }
+    
+    //MARK:- IB Actions and Outlets
     
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
@@ -30,6 +48,21 @@ class PlayerDetails: UIView {
     }
     @IBOutlet weak var authorLabel: UILabel!
     
-    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var playPauseButton: UIButton! {
+        didSet {
+            playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            playPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+        }
+    }
+    
+    @objc func handlePlayPause() {
+        if player.timeControlStatus == .paused {
+            player.play()
+            playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        } else {
+            player.pause()
+            playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        }
+    }
     
 }

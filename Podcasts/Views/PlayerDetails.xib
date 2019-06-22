@@ -89,34 +89,37 @@
                                     <rect key="frame" x="0.0" y="0.0" width="49" height="85"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7D-NR-XcA">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7D-NR-XcA">
                                     <rect key="frame" x="49" y="0.0" width="44" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="zSu-mU-O5a"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="rewind"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="rewind"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j7u-vA-zqC">
                                     <rect key="frame" x="93" y="0.0" width="48.5" height="85"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cY6-Sp-BaI">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cY6-Sp-BaI">
                                     <rect key="frame" x="141.5" y="0.0" width="54" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="54" id="pp0-nS-ZCz"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="play"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="play"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FH2-UF-5Um">
                                     <rect key="frame" x="195.5" y="0.0" width="39" height="85"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kch-lR-4zP">
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kch-lR-4zP">
                                     <rect key="frame" x="234.5" y="0.0" width="44" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="TwX-HV-6df"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="fastfoward"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="fastfoward"/>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUt-RF-tRH">
                                     <rect key="frame" x="278.5" y="0.0" width="48.5" height="85"/>
@@ -171,7 +174,7 @@
         <image name="fastfoward" width="40" height="40"/>
         <image name="maxvolume" width="1024" height="1024"/>
         <image name="mutevolume" width="512" height="512"/>
-        <image name="play" width="83.5" height="83.5"/>
+        <image name="play" width="100" height="100"/>
         <image name="rewind" width="40" height="40"/>
         <image name="sound" width="60" height="60"/>
     </resources>
