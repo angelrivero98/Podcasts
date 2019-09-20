@@ -12,6 +12,7 @@ import Alamofire
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     var podcasts = [Podcast]()
+    var podcastListViewModel = PodcastListViewModel()
     
     let cellId = "cellId"
     
@@ -45,8 +46,8 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episodesController = EpisodesController()
-        let podcast = podcasts[indexPath.row]
-        episodesController.podcast = podcast
+        let podcastVM = podcastListViewModel.podcastAtIndex(indexPath.row)
+        episodesController.podcastVM = podcastVM
         navigationController?.pushViewController(episodesController, animated: true)
     }
     
@@ -59,18 +60,18 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return podcasts.count > 0 ? 0 : 250
+        return podcastListViewModel.podcastsCount() > 0 ? 0 : 250
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return podcasts.count
+        return podcastListViewModel.podcastsCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for: indexPath) as! PodcastCell
         
-        let podcast = podcasts[indexPath.row]
-        cell.podcast = podcast
+        let podcastVM = podcastListViewModel.podcastAtIndex(indexPath.row)
+        cell.podcastViewModel = podcastVM
         return cell
     }
     
@@ -80,7 +81,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
-            self.podcasts = podcasts
+            self.podcastListViewModel.podcastsViewModel = podcasts.map(PodcastViewModel.init)
             self.tableView.reloadData()
         }
     }

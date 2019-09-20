@@ -15,7 +15,7 @@ class APIService {
     static let shared = APIService()
     let url = "https://itunes.apple.com/search"
     
-    func fetchPodcasts(searchText: String, completionHnadler: @escaping ([Podcast]) -> ()) {
+    func fetchPodcasts(searchText: String, completionHandler: @escaping ([Podcast]) -> ()) {
         let parameters = ["term": searchText, "media": "podcast"]
         
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
@@ -27,7 +27,7 @@ class APIService {
             
             do {
                 let searchResults = try JSONDecoder().decode(SearchResults.self, from: data)
-                completionHnadler(searchResults.results)
+                completionHandler(searchResults.results)
             } catch let decodeErr {
                 print("Failed to decode", decodeErr)
             }
@@ -35,7 +35,7 @@ class APIService {
         }
     }
     
-    func fetchEpisodes(feedUrl: String, completionHnadler: @escaping ([Episode]) -> ()) {
+    func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> ()) {
         guard let url = URL(string: feedUrl.toSecureHTTPS()) else {return}
         let parser = FeedParser(URL: url)
         parser.parseAsync { (result) in
@@ -45,7 +45,7 @@ class APIService {
             }
             guard let feed = result.rssFeed else { return }
             let episodes = feed.toEpisodes()
-            completionHnadler(episodes)
+            completionHandler(episodes)
         }
     }
 }

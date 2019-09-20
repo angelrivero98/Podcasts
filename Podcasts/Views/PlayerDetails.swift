@@ -11,13 +11,13 @@ import AVKit
 
 class PlayerDetails: UIView {
     
-    var episode: Episode! {
+    var episodeVM: EpisodeViewModel! {
         didSet {
-            episodeTitleLabel.text = episode.title
-            authorLabel.text = episode.author
+            episodeTitleLabel.text = episodeVM.title
+            authorLabel.text = episodeVM.author
             
             playEpisode()
-            guard let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "") else { return }
+            guard let url = URL(string: episodeVM.imageUrl) else { return }
             episodeImageView.sd_setImage(with: url)
         }
     }
@@ -29,7 +29,7 @@ class PlayerDetails: UIView {
     }()
     
     private func playEpisode(){
-        guard let url = URL(string: episode.streamUrl) else { return }
+        guard let url = URL(string: episodeVM.streamUrl) else { return }
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
         player.play()
@@ -40,7 +40,21 @@ class PlayerDetails: UIView {
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
     }
-    @IBOutlet weak var episodeImageView: UIImageView!
+    
+    private func enlargeEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = .identity
+        }, completion: nil)
+    }
+    
+    @IBOutlet weak var episodeImageView: UIImageView! {
+        didSet{
+            episodeImageView.layer.cornerRadius = 5
+            episodeImageView.clipsToBounds = true
+            let scale: CGFloat = 0.7
+            episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+    }
     @IBOutlet weak var episodeTitleLabel: UILabel!{
         didSet{
             episodeTitleLabel.numberOfLines = 2

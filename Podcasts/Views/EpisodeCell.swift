@@ -10,14 +10,12 @@ import UIKit
 
 class EpisodeCell: UITableViewCell {
 
-    var episode: Episode! {
+    var episodeVM: EpisodeViewModel! {
         didSet {
-            titleLabel.text = episode.title
-            descriptionLabel.text = episode.description
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy"
-            pubDateLabel.text = dateFormatter.string(from: episode.pubDate)
-            let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+            titleLabel.text = episodeVM.title
+            descriptionLabel.text = episodeVM.description
+            pubDateLabel.text = episodeVM.pubDate
+            let url = URL(string: episodeVM.imageUrl)
             episodeImageView.sd_setImage(with: url)
         }
     }

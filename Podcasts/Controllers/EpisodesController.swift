@@ -11,18 +11,18 @@ import FeedKit
 
 class EpisodesController: UITableViewController {
 
-    var podcast: Podcast? {
+    var podcastVM: PodcastViewModel? {
         didSet {
-            navigationItem.title = podcast?.trackName
+            navigationItem.title = podcastVM?.trackName
             fetchEpisodes()
         }
     }
-    var episodes = [Episode]()
+    var episodeListViewModel = EpisodeListViewModel()
     
     private func fetchEpisodes() {
-        guard let feedUrl = podcast?.feedUrl else {return}
+        guard let feedUrl = podcastVM?.feedUrl else {return}
         APIService.shared.fetchEpisodes(feedUrl: feedUrl) { (episodes) in
-            self.episodes = episodes
+            self.episodeListViewModel.episodesViewModel = episodes.map(EpisodeViewModel.init)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -46,24 +46,24 @@ class EpisodesController: UITableViewController {
     //MARK:- TableView Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let episode = episodes[indexPath.row]
-        
+        let episodeVM = episodeListViewModel.episodeAtIndex(indexPath.row)
+
         let window = UIApplication.shared.keyWindow
         let playerDetailsView = Bundle.main.loadNibNamed("PlayerDetails", owner: self, options: nil)?.first as! PlayerDetails
         playerDetailsView.frame = self.view.frame
-        playerDetailsView.episode = episode
+        playerDetailsView.episodeVM = episodeVM
         window?.addSubview(playerDetailsView)
-        
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return episodes.count
+        return episodeListViewModel.episodesCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! EpisodeCell
-        let episode = episodes[indexPath.row]
-        cell.episode = episode
+        let episodeVM = episodeListViewModel.episodeAtIndex(indexPath.row)
+        cell.episodeVM = episodeVM
         return cell
     }
     

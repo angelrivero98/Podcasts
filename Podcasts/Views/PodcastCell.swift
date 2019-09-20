@@ -16,13 +16,13 @@ class PodcastCell: UITableViewCell {
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var episodeCount: UILabel!
     
-    var podcast: Podcast! {
+    var podcastViewModel: PodcastViewModel! {
         didSet {
-            trackName.text = podcast.trackName
-            artistName.text = podcast.artistName
-            episodeCount.text = "\(podcast.trackCount ?? 0) Episodes"
+            trackName.text = podcastViewModel.trackName
+            artistName.text = podcastViewModel.artistName
+            episodeCount.text = podcastViewModel.trackCount
             
-            guard let url = URL(string: podcast.artworkUrl600?.toSecureHTTPS() ?? "") else {return}
+            guard let url = URL(string: podcastViewModel.podcastImage) else {return}
             podcastImage.sd_setImage(with: url, completed: nil)
         }
     }
